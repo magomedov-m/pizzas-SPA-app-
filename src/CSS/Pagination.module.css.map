@@ -1,0 +1,1 @@
+{"version":3,"sources":["../components/Pagination/Pagination.module.scss","Pagination.module.css"],"names":[],"mappings":"AAEI;EACE,qBAAA;ACDN;ADGM;EACE,kBAAA;EACA,WAAA;EACA,YAAA;EACA,iBAAA;EACA,yBAAA;EACA,cAAA;EACA,mBAAA;EACA,kBAAA;EACA,eAAA;EACA,qBAAA;ACDR;ADGQ;EACE,yBAAA;EACA,WAAA;ACDV;ADSM;EACE,yBAAA;EACA,WAAA;ACPR","file":"Pagination.module.css"}
