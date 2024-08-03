@@ -4,8 +4,10 @@ import Sort from "../components/Sort";
 import ElemBlock from "../components/ProductBlock";
 import Sceletone from "../components/ProductBlock/Sceletone";
 import Pagination from "../components/Pagination/Index";
+import { SearchContext } from "../App";
 
-export default function Home({ searchValue }) {
+export default function Home() {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
