@@ -7,8 +7,6 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 export const SearchContext = React.createContext();
 
-console.log(SearchContext);
-
 const productsArr = [];
 
 function App() {

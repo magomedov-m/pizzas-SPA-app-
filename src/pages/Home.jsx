@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import ElemBlock from "../components/ProductBlock";
@@ -6,16 +7,23 @@ import Sceletone from "../components/ProductBlock/Sceletone";
 import Pagination from "../components/Pagination/Index";
 import { SearchContext } from "../App";
 
+
 export default function Home() {
+  const categoryId = useSelector(state => state.test);
+  const setCategoryId = () => {}
+  console.log('redux-state', categoryId)
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryId, setCategoryId] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [sortType, setSortType] = React.useState({
     name: "популярности",
     sortProperty: "rating",
   });
+
+  const onChangeSort = (id) => {
+    console.log(id);
+  };
 
   const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
   const sortBy = sortType.sortProperty.replace("-", "");
@@ -33,8 +41,6 @@ export default function Home() {
       });
     window.scrollTo(0, 0);
   }, [categoryId, sortType, searchValue, currentPage]);
-
-  console.log(`categoryId: ${categoryId}, sortType: ${sortType}`);
 
   const pizzas = items
     .filter((obj) => {
@@ -54,9 +60,9 @@ export default function Home() {
       <div className="content__top">
         <Categories
           value={categoryId}
-          onClickCategory={(i) => setCategoryId(i)}
+          onClickCategory={(i) => onChangeSort(i)}
         />
-        <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
+        <Sort value={sortType} onChangeSort={(i) => console.log(i)} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletone : pizzas}</div>
