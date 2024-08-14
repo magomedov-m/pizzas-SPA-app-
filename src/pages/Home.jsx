@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../redux/filterSlice";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import ElemBlock from "../components/ProductBlock";
@@ -7,10 +8,10 @@ import Sceletone from "../components/ProductBlock/Sceletone";
 import Pagination from "../components/Pagination/Index";
 import { SearchContext } from "../App";
 
-
 export default function Home() {
-  const categoryId = useSelector(state => state.test);
-  const setCategoryId = () => {}
+  const dispatch = useDispatch();
+  console.log(dispatch, 'aPP dispatch')
+  const categoryId = useSelector(state => state.filter.categoryId);
   console.log('redux-state', categoryId)
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
@@ -21,8 +22,9 @@ export default function Home() {
     sortProperty: "rating",
   });
 
-  const onChangeSort = (id) => {
-    console.log(id);
+  const onChangeCategory = (id) => {
+    console.log(id)
+    dispatch(setCategoryId(id));
   };
 
   const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
@@ -60,7 +62,7 @@ export default function Home() {
       <div className="content__top">
         <Categories
           value={categoryId}
-          onClickCategory={(i) => onChangeSort(i)}
+          onClickCategory={(i) => onChangeCategory(i)}
         />
         <Sort value={sortType} onChangeSort={(i) => console.log(i)} />
       </div>

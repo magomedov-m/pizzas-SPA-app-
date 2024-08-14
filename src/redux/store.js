@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import test from './filterSlice';
+import filter from './filterSlice';
 
 export const store = configureStore({
   reducer: { 
-    test,
+    filter,
    },
 });
+
+console.log(store.dispatch, 'REDUX');
